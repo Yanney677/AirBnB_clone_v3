@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-'''
+"""
 Creates a view for Amenity objects - handles all default RESTful API actions.
-'''
+"""
 
 from flask import abort, jsonify, request
 from models.amenity import Amenity
@@ -12,7 +12,7 @@ from models import storage
 # Route for retrieving all Amenity objects
 @app_views.route('/amenities', methods=['GET'], strict_slashes=False)
 def get_all_amenities():
-    '''Retrieves the list of all Amenity objects'''
+    """Retrieves the list of all Amenity objects"""
     # Get all Amenity objects from the storage
     amenities = storage.all(Amenity).values()
     # Convert objects to dictionaries and jsonify the list
@@ -23,7 +23,7 @@ def get_all_amenities():
 @app_views.route('/amenities/<amenity_id>',
                  methods=['GET'], strict_slashes=False)
 def get_amenity(amenity_id):
-    '''Retrieves an Amenity object'''
+    """Retrieves an Amenity object"""
     # Get the Amenity object with the given ID from the storage
     amenity = storage.get(Amenity, amenity_id)
     if amenity:
@@ -37,7 +37,7 @@ def get_amenity(amenity_id):
 # Route for deleting a specific Amenity object by ID
 @app_views.route('/amenities/<amenity_id>', methods=['DELETE'])
 def delete_amenity(amenity_id):
-    '''Deletes an Amenity object'''
+    """Deletes an Amenity object"""
     # Get the Amenity object with the given ID from the storage
     amenity = storage.get(Amenity, amenity_id)
     if amenity:
@@ -54,7 +54,7 @@ def delete_amenity(amenity_id):
 # Route for creating a new Amenity object
 @app_views.route('/amenities', methods=['POST'], strict_slashes=False)
 def create_amenity():
-    '''Creates an Amenity object'''
+    """Creates an Amenity object"""
     if not request.get_json():
         # Return 400 error if the request data is not in JSON format
         abort(400, 'Not a JSON')
@@ -78,7 +78,7 @@ def create_amenity():
 @app_views.route('/amenities/<amenity_id>', methods=['PUT'],
                  strict_slashes=False)
 def update_amenity(amenity_id):
-    '''Updates an Amenity object'''
+    """Updates an Amenity object"""
     # Get the Amenity object with the given ID from the storage
     amenity = storage.get(Amenity, amenity_id)
     if amenity:
@@ -106,7 +106,7 @@ def update_amenity(amenity_id):
 # Error Handlers:
 @app_views.errorhandler(404)
 def not_found(error):
-    '''Returns 404: Not Found'''
+    """Returns 404: Not Found"""
     # Return a JSON response for 404 error
     response = {'error': 'Not found'}
     return jsonify(response), 404
@@ -114,7 +114,7 @@ def not_found(error):
 
 @app_views.errorhandler(400)
 def bad_request(error):
-    '''Return Bad Request message for illegal requests to the API.'''
+    """Return Bad Request message for illegal requests to the API."""
     # Return a JSON response for 400 error
     response = {'error': 'Bad Request'}
     return jsonify(response), 400

@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-'''
+"""
 the __init__.py creates an instance with `url_prefix` set to `/api/v1`.
-'''
+"""
 
 from flask import Blueprint
 

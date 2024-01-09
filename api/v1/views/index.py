@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-'''
+"""
 Create a route `/status` on the object app_views.
-'''
+"""
 
 
 from flask import jsonify
@@ -10,17 +10,17 @@ from models import storage
 
 @app_views.route('/status', methods=['GET'], strict_slashes=False)
 def api_status():
-    '''
+    """
     Returns a JSON response for RESTful API.
-    '''
+    """
     return jsonify(status = 'OK')
 
 
 @app_views.route('/stats', methods=['GET'])
 def get_stats():
-    '''
+    """
     Retrieves the number of each objects by type.
-    '''
+    """
     stats = {
         'amenities': storage.count('Amenity'),
         'cities': storage.count('City'),
